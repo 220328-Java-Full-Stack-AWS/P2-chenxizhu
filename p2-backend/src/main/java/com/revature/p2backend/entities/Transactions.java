@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name="transactions" , schema="public")
+@Table(name="transaction_table" , schema="public")
 public class Transactions {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +21,9 @@ public class Transactions {
     private Timestamp createAt;
 
     //add product here as the way group P2 add User in orders
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="product_name", referencedColumnName = "product_name")
+    private Product product;
 
     @Column(name="total_cost")
     private Double total;
@@ -75,6 +78,13 @@ public class Transactions {
         this.state = state;
         this.country = country;
     }
+
+    public Product getProduct() {
+        return product;
+    }
+
+
+
 
     public Integer getId() {
         return id;

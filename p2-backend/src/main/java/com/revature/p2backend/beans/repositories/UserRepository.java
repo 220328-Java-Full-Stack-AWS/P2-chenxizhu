@@ -13,9 +13,13 @@ public class UserRepository implements HibernateRepository<User> {
     private Session session;
     String tableName;
 
-    public UserRepository(Session session, String tableName) {
+    public UserRepository(Session session) {
         this.session = session;
         this.tableName = "user_table";//make connection to the table users
+    }
+
+    public UserRepository() {
+
     }
 
     @Override

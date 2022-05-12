@@ -18,12 +18,16 @@ public class ProductRepository implements HibernateRepository<Product>{
         this.tableName = "product_table";//make connection to the product_table in sql
     }
 
+    public ProductRepository() {
+
+    }
+
     @Override
     public void save(Product product) {
         Transaction tx = session.beginTransaction();
         session.save(product);
         tx.commit();
-
+        System.out.println("Product saved");
     }
 
     @Override

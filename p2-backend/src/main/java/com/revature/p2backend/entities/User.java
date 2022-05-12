@@ -3,7 +3,7 @@ package com.revature.p2backend.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name="users" , schema = "public")
+@Table(name="user_table" , schema = "public")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,6 +44,20 @@ public class User {
     private String country;
 
     public User() {
+    }
+
+    public User(String username, String password, String firstname, String lastname, String email, String creditCard, String phone, String address, String city, String state, String country) {
+        this.username = username;
+        this.password = password;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.creditCard = creditCard;
+        this.phone = phone;
+        this.address = address;
+        this.city = city;
+        this.state = state;
+        this.country = country;
     }
 
     public User(Integer id, String username, String password, String firstname, String lastname, String email, String creditCard, String phone, String address, String city, String state, String country) {

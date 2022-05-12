@@ -1,18 +1,16 @@
 package com.revature.p2backend.entities;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
+import javax.persistence.*;
+@Entity
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="product_id")
     private Integer id;
 
-    @Column(name="product_name")
-    private String name;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="product_name", referencedColumnName = "product_name")
+    private String productName;
 
     @Column(name="price")
     private Double price;
@@ -30,7 +28,7 @@ public class Product {
     }
 
     public Product(String name, String description, Double price, Integer inventoryAmount) {
-        this.name = name;
+        this.productName = name;
         this.price = price;
         this.description = description;
         this.inventoryAmount = inventoryAmount;
@@ -38,7 +36,7 @@ public class Product {
 
     public Product(Integer id, String name, Double price, String description, String imageUrl, Integer inventoryAmount) {
         this.id = id;
-        this.name = name;
+        this.productName = name;
         this.price = price;
         this.description = description;
         this.imageUrl = imageUrl;
@@ -54,11 +52,11 @@ public class Product {
     }
 
     public String getName() {
-        return name;
+        return productName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.productName = name;
     }
 
     public Double getPrice() {
