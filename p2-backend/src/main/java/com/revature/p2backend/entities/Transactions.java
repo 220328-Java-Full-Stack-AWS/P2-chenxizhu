@@ -20,6 +20,8 @@ public class Transactions {
     @Column(name="created_at")
     private Timestamp createAt;
 
+    //add product here as the way group P2 add User in orders
+
     @Column(name="total_cost")
     private Double total;
 

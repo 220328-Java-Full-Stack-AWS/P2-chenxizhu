@@ -37,11 +37,29 @@ public class TransactionRepository implements HibernateRepository<Transactions>{
 
     @Override
     public void update(Transactions transactions) {
-
+        Transaction tx = session.beginTransaction();
+        Query query = session.createQuery("UPDATE Transactions SET " +
+                "userId = :user_id, total = :total " +
+                "where id = :id");
+        query.setParameter("userId", transactions.getUserId());
+        query.setParameter("total", transactions.getTotal());
+        query.setParameter("id", transactions.getId());
+        query.executeUpdate();
+        tx.commit();
     }
 
     @Override
     public void delete(Transactions transactions) {
+        Transaction tx = session.beginTransaction();
+        Query query = session.createQuery("DELETE Orders where id = :id");
+        query.setParameter("id", transactions.getId());
+        query.executeUpdate();
+    }
 
+    public List<Transactions> getOrdersByUser(String username){
+        TypedQuery<Transactions> query = session.createQuery("FROM Transactions where username = :username", Transactions.class);
+        query.setParameter("username", username);
+        List<Transactions> orders = query.getResultList();
+        return orders;
     }
 }
