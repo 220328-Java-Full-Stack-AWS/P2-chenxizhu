@@ -1,20 +1,30 @@
 package com.revature.p2backend.entities;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Entity
-@Table(name="users" , schema = "public")
-public class User {
+@Table(name="transactions" , schema="public")
+public class Transactions {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="user_id")
+    @Column(name="transaction_id")
     private Integer id;
 
     @Column(name="username")
     private String username;
 
-    @Column(name="password")
-    private String password;
+    @Column(name="user_id")
+    private Integer userId;
+
+    @Column(name="created_at")
+    private Timestamp createAt;
+
+    @Column(name="total_cost")
+    private Double total;
+
+    @Column(name="paid")
+    private Boolean paid;
 
     @Column(name="first_name")
     private String firstname;
@@ -43,13 +53,16 @@ public class User {
     @Column(name="country")
     private String country;
 
-    public User() {
+    public Transactions() {
     }
 
-    public User(Integer id, String username, String password, String firstname, String lastname, String email, String creditCard, String phone, String address, String city, String state, String country) {
+    public Transactions(Integer id, String username, Integer userId, Timestamp createAt, Double total, Boolean paid, String firstname, String lastname, String email, String creditCard, String phone, String address, String city, String state, String country) {
         this.id = id;
         this.username = username;
-        this.password = password;
+        this.userId = userId;
+        this.createAt = createAt;
+        this.total = total;
+        this.paid = paid;
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
@@ -77,12 +90,36 @@ public class User {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Timestamp getCreateAt() {
+        return createAt;
+    }
+
+    public void setCreateAt(Timestamp createAt) {
+        this.createAt = createAt;
+    }
+
+    public Double getTotal() {
+        return total;
+    }
+
+    public void setTotal(Double total) {
+        this.total = total;
+    }
+
+    public Boolean getPaid() {
+        return paid;
+    }
+
+    public void setPaid(Boolean paid) {
+        this.paid = paid;
     }
 
     public String getFirstname() {
