@@ -2,6 +2,7 @@ package com.revature.p2backend.entities;
 
 import javax.persistence.*;
 @Entity
+@Table(name="product_table" , schema="public")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

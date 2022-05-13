@@ -13,7 +13,7 @@ public class ProductRepository implements HibernateRepository<Product>{
     private Session session;
     private String tableName;
 
-    public ProductRepository(Session session, String tableName) {
+    public ProductRepository(Session session) {
         this.session = session;
         this.tableName = "product_table";//make connection to the product_table in sql
     }

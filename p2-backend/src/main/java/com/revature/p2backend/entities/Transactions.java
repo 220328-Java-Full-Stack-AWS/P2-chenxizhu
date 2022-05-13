@@ -79,6 +79,7 @@ public class Transactions {
         this.country = country;
     }
 
+
     public Product getProduct() {
         return product;
     }
