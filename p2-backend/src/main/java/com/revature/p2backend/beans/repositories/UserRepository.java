@@ -81,4 +81,26 @@ public class UserRepository implements HibernateRepository<User> {
         return user;
     }
 
+    public Boolean isUsernameUnique(String username) {
+        TypedQuery<User> query = session.createQuery("FROM User WHERE username = :username", User.class);
+        query.setParameter("username", username);
+        if(query.getResultList().isEmpty()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public Boolean isUserEmailUnique(String email) {
+        TypedQuery<User> query = session.createQuery("From User where email = :email_address", User.class);
+        query.setParameter("email_address",email);
+        if(query.getResultList().isEmpty()) {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
 }

@@ -31,6 +31,7 @@ public class P2BackendApplication {
 		User user = new User("czhu","password","chenxi","zhu", "chenxi@email.com","4444-4444-4444-4444","111-111-1111","john doe lane","free city","free state","USA");
 		User user1 = new User("moneyman","password","james","franco", "jf@email.com","4444-4444-4444-4444","111-111-1111","john doe lane","free city","free state","USA");
 
+
 		UserRepository uRepo = new UserRepository(session);
 		uRepo.save(user);
 		uRepo.save(user1);

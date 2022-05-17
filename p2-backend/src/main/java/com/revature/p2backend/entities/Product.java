@@ -9,8 +9,13 @@ public class Product {
     @Column(name="product_id")
     private Integer id;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="product_name", referencedColumnName = "product_name")
+
+    //not working before cause has to use another entity
+    // instead of just a column of the entity cascade is for sub categorizing
+    //@OneToOne(cascade = CascadeType.ALL)
+
+    //@OneToOne(fetch=FetchType.LAZY)
+    @Column(name="product_name")
     private String productName;
 
     @Column(name="price")
@@ -28,16 +33,17 @@ public class Product {
     public Product() {
     }
 
-    public Product(String name, String description, Double price, Integer inventoryAmount) {
-        this.productName = name;
+    public Product(String productName, String description, Double price, Integer inventoryAmount) {
+        this.productName = productName;
         this.price = price;
         this.description = description;
         this.inventoryAmount = inventoryAmount;
     }
 
-    public Product(Integer id, String name, Double price, String description, String imageUrl, Integer inventoryAmount) {
+
+    public Product(Integer id, String productName, Double price, String description, String imageUrl, Integer inventoryAmount) {
         this.id = id;
-        this.productName = name;
+        this.productName = productName;
         this.price = price;
         this.description = description;
         this.imageUrl = imageUrl;
@@ -52,12 +58,12 @@ public class Product {
         this.id = id;
     }
 
-    public String getName() {
+    public String getProductName() {
         return productName;
     }
 
-    public void setName(String name) {
-        this.productName = name;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public Double getPrice() {

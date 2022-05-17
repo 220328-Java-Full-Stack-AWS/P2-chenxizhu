@@ -55,7 +55,7 @@ public class ProductRepository implements HibernateRepository<Product>{
         Query query = session.createQuery("UPDATE Product SET " +
                 "product_name = :name, price = :price, description = :description, inventory_amount = :inventoryAmount " +
                 "WHERE id = :id");
-        query.setParameter("name", product.getName());
+        query.setParameter("name", product.getProductName());
         query.setParameter("price", product.getPrice());
         query.setParameter("description", product.getDescription());
         query.setParameter("inventory", product.getInventoryAmount());

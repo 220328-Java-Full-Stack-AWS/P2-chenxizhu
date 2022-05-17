@@ -21,8 +21,10 @@ public class Transactions {
     private Timestamp createAt;
 
     //add product here as the way group P2 add User in orders
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="product_name", referencedColumnName = "product_name")
+    //@Column(name="product_name")
+    //@ManyToOne(fetch=FetchType.LAZY)
     private Product product;
 
     @Column(name="total_cost")
