@@ -2,7 +2,9 @@ package com.revature.p2backend.beans.repositories;
 
 import com.revature.p2backend.entities.Cart;
 import com.revature.p2backend.entities.Product;
+import com.revature.p2backend.entities.Transactions;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -11,6 +13,7 @@ public class CartRepository implements HibernateRepository<Cart>{
 
     private Session session;
     private String tableName;
+    private TransactionRepository transactionRepository;
 
     public CartRepository(Session session) {
         this.session = session;
@@ -38,8 +41,11 @@ public class CartRepository implements HibernateRepository<Cart>{
 
     @Override
     public void save(Cart cart) {
-        cart.add(product);
-        System.out.println("transaction created.");
+        Transaction tx = session.beginTransaction();
+        session.save(cart);
+        tx.commit();
+        transactionRepository.save(new Transactions(cart));
+        System.out.println("creating transaction.");//take to fill in payment info
     }
 
     @Override

@@ -11,6 +11,9 @@ public class Transactions {
     @Column(name="transaction_id")
     private Integer id;
 
+    @JoinColumn(name = "cart_id", referencedColumnName = "cart_id")
+    private Cart cartId;
+
     @Column(name="username")
     private String username;
 
@@ -21,13 +24,13 @@ public class Transactions {
     private Timestamp createAt;
 
     //add product here as the way group P2 add User in orders
-    @OneToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="product_name", referencedColumnName = "product_name")
+    @OneToMany(fetch=FetchType.LAZY)
+    @JoinColumn(name="product_id", referencedColumnName = "product_id")
     //@Column(name="product_name")
     //@ManyToOne(fetch=FetchType.LAZY)
     private Product product;
 
-    @Column(name="total_cost")
+    @JoinColumn(name="total" , referencedColumnName = "total")
     private Double total;
 
     @Column(name="paid")
@@ -81,6 +84,9 @@ public class Transactions {
         this.country = country;
     }
 
+    public Transactions(Cart cartId) {
+        this.cartId = cartId;
+    }
 
     public Product getProduct() {
         return product;
